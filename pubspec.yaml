@@ -12,7 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
     
-  provider: ^6.0.5 # Utilizado para el manejo de estados de la app
+  flutter_cube: ^0.1.1
+  http: ^0.13.5 # Librería necesaria para tener acceso a internet.
+  provider: ^6.0.5 # Utilizado para el manejo de estados de la app.
   shared_preferences: ^2.0.17 # Utilizado para manejar las preferencias del usuario.
 
 dev_dependencies:
@@ -22,3 +24,73 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/characters/
+    - assets/images/films/
+    - assets/3d_models/death_star.obj
+    - assets/3d_models/death_star.mtl
+  
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/montserrat/Montserrat-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/montserrat/Montserrat-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/montserrat/Montserrat-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/montserrat/Montserrat-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/montserrat/Montserrat-Light.ttf
+          weight: 300
+        - asset: assets/fonts/montserrat/Montserrat-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/montserrat/Montserrat-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/montserrat/Montserrat-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/montserrat/Montserrat-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/montserrat/Montserrat-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/montserrat/Montserrat-Black.ttf
+          weight: 900
+        - asset: assets/fonts/montserrat/Montserrat-BlackItalic.ttf
+          weight: 900
+          style: italic
+    - family: StarWarsIcons
+      fonts:
+        - asset: assets/fonts/starwars/starwarsicons.ttf
+    - family: StarJedi
+      fonts:
+        - asset: assets/fonts/starwars/starjedi.ttf
+    - family: StarJedise
+      fonts:
+        - asset: assets/fonts/starwars/starjedise.ttf
+    - family: StarJhol
+      fonts:
+        - asset: assets/fonts/starwars/starjhol.ttf
+    - family: StarJout
+      fonts:
+        - asset: assets/fonts/starwars/starjout.ttf

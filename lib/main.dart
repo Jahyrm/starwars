@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starwars/core/providers/theme_provider.dart';
+import 'package:starwars/modules/home/screens/home_screen.dart';
 
 void main() {
+  /// Asegura que las llamadas al código nativo (por parte de provider) sean
+  /// posibles al asegurar que "WidgetsFlutterBinding" se inicialice primero.
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// El cambio de tema aplica a toda la app, por lo que encierro mi materialapp
+  /// con mi changenotifierprovider.
   runApp(
     ChangeNotifierProvider<ThemeProvider>(
       create: (context) => ThemeProvider(),
@@ -21,52 +27,7 @@ class StarWarsApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'StarWars App',
       theme: Provider.of<ThemeProvider>(context).currentTheme,
-      home: const HomeScreen(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
