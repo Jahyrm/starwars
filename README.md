@@ -42,13 +42,13 @@ Se puede hacer una prueba del manejo de estados y del tema en el archivo "test/w
 
 ## Screenshots
 
-![screenshot](http://jahyrm.com/files/starwars_1.gif)
+![screenshot](https://jahyrm.com/files/starwars_1.gif)
 
-![screenshot](http://jahyrm.com/files/starwars_2.gif)
+![screenshot](https://jahyrm.com/files/starwars_2.gif)
 
 ## Descarga Apk
 
-[http://jahyrm.com/files/starwars.apk](http://jahyrm.com/files/starwars.apk)
+[https://jahyrm.com/files/starwars.apk](https://jahyrm.com/files/starwars.apk)
 
 ## Recursos Utilizados
 
