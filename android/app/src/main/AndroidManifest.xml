@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jahyrm.starwars">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Star Wars App"
         android:name="${applicationName}"

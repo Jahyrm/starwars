@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
     
   flutter_cube: ^0.1.1 # Para mostrar objetos en 3D
-  flutter_native_splash: ^2.1.6
   http: ^0.13.5 # Librería necesaria para tener acceso a internet.
   provider: ^6.0.5 # Utilizado para el manejo de estados de la app.
   shared_preferences: ^2.0.17 # Utilizado para manejar las preferencias del usuario.
@@ -23,6 +22,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^1.0.0
   flutter_launcher_icons: ^0.11.0
+  flutter_native_splash: ^2.1.6
 
 flutter_icons:
   image_path: "assets/logos/icon_dark_logo.png"
@@ -42,12 +42,12 @@ flutter_native_splash:
   # To restore Flutter's default white splash screen, run the following command in the terminal:
   # flutter pub run flutter_native_splash:remove
   # color: "#000000"
-  background_image: assets/logos/small_background_splash.png
-  image: assets/logos/splash.png
+  background_image: "assets/logos/small_background_splash.png"
+  image: "assets/logos/splash.png"
 
   android_12:
-    background_image: assets/logos/small_background_splash.png
-    image: assets/logos/splash_12.png
+    background_image: "assets/logos/small_background_splash.png"
+    image: "assets/logos/splash_12.png"
     # App icon background color.
     icon_background_color: "#000000"
 
