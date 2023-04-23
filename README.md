@@ -8,6 +8,14 @@ Este proyecto, es una aplicación móvil híbrida, se utilizó flutter para crea
 
 - Flutter versión 2.10.2
 - Null Safety Activado
+  
+## Características
+
+- Movimiento de un logo 3D basado en el movimiento del celular o dispositivo. (Solo Android por el momento.)
+- Cambio de tema claro a oscuro
+- Se muestran personajes de StarWars, su género y las películas donde aparecen.
+- Permite agregar personajes a favoritos
+- Manejo de estados y guardado de datos
 
 ## Dependencias Utilizadas
 
