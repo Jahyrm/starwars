@@ -48,9 +48,13 @@ Se puede hacer una prueba del manejo de estados y del tema en el archivo "test/w
 
 ## Descarga Apk
 
-[http://jahyrm.com/files/app-release.apk](http://jahyrm.com/files/app-release.apk)
+[http://jahyrm.com/files/starwars.apk](http://jahyrm.com/files/starwars.apk)
 
 ## Recursos Utilizados
+
+### Datos
+
+- [SWAPI - The Star Wars API](https://swapi.dev)
 
 ### Modelos 3D
 

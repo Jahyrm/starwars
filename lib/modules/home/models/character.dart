@@ -18,14 +18,13 @@ class Character {
         json['url']?.split('/')[json['url'].split('/').length - 2];
     name = json['name'];
     gender = json['gender'];
-    if ((filmsList?.isNotEmpty ?? false) &&
-        (json['films']?.isNotEmpty ?? false)) {
+    if (json['films']?.isNotEmpty ?? false) {
       films = <Film>[];
       json['films'].forEach((dynamic variable) {
-        if (variable is String) {
-          String idBuscado =
-              variable.split('/')[variable.split('/').length - 2];
+        if (variable is String && (filmsList?.isNotEmpty ?? false)) {
           try {
+            String idBuscado =
+                variable.split('/')[variable.split('/').length - 2];
             Film? film =
                 filmsList!.where((Film film) => film.id == idBuscado).first;
             films!.add(film);
