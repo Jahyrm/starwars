@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:starwars/modules/home/models/film.dart';
 
+/// Widget para mostrar visualmente una película.
 class FilmWidget extends StatelessWidget {
+  /// Este widget, necesita un objeto de tipo [Film] de donde se extraerán los
+  /// datos mostrados.
   final Film film;
 
   const FilmWidget({Key? key, required this.film}) : super(key: key);

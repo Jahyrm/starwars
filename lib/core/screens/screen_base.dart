@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starwars/modules/home/widgets/logo_3d.dart';
+import 'package:starwars/core/widgets/logo_3d.dart';
 
 enum ScreenBasePadding { none, horizontal, vertical, both }
 
@@ -11,17 +11,19 @@ enum ScreenBasePadding { none, horizontal, vertical, both }
 /// Los parámetros que se necesitan para personalizarlo, se irán agregando sobre
 /// la marcha.
 class ScreenBase extends StatefulWidget {
-  /// Será el título que se muestra en el medio del AppBar
-  final String title;
-
-  /// Será el cuerpo de la pantalla, y será diferente en cada pantalla
-  final Widget child;
+  /// Recibe un widget que será mostrado al lado izquierdo del AppBar en caso
+  /// de ser enviado.
+  final Widget? leftButton;
 
   /// Determina si se muestra el logo en el título. Por defecto si se muestra.
   final bool showLogo;
 
   /// Determina si se debe centrar el título. Por defecto si se muestra.
   final bool centerTitle;
+
+  /// Muestra los widgets que se mostrarán al lado derecho en caso de ser
+  /// enviados
+  final List<Widget>? actionButtons;
 
   /// En este parámetro enviaremos si deseamos que el cuerpo de la pantala
   /// tenga un padding. Si no se envía, no se agregará ningún padding.
@@ -42,18 +44,26 @@ class ScreenBase extends StatefulWidget {
   /// Si el usuario envía su propio floating Action Button se utiliza si no no.
   final FloatingActionButton? floatingActionButton;
 
+  /// Será el título que se muestra en el medio del AppBar
+  final String title;
+
+  /// Será el cuerpo de la pantalla, y será diferente en cada pantalla
+  final Widget child;
+
   const ScreenBase({
     Key? key,
-    required this.title,
-    required this.child,
+    this.leftButton,
     this.showLogo = true,
     this.centerTitle = true,
+    this.actionButtons,
     this.paddingMode = ScreenBasePadding.none,
     this.paddingSize = 8.0,
     this.expandBody = false,
     this.floatingActionButton,
     this.wrapInScroll = true,
     this.scrollDirection = Axis.vertical,
+    required this.title,
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -117,6 +127,7 @@ class _ScreenBaseState extends State<ScreenBase> {
 
   AppBar _appBar() {
     return AppBar(
+      leading: widget.leftButton,
       title: Row(
         mainAxisAlignment: widget.centerTitle
             ? MainAxisAlignment.center
@@ -127,6 +138,7 @@ class _ScreenBaseState extends State<ScreenBase> {
           Text(widget.title),
         ],
       ),
+      actions: widget.actionButtons,
     );
   }
 }

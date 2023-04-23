@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:starwars/core/providers/favorites_provider.dart';
 import 'package:starwars/core/providers/theme_provider.dart';
 import 'package:starwars/modules/home/screens/home_screen.dart';
 
@@ -11,8 +12,11 @@ void main() {
   /// El cambio de tema aplica a toda la app, por lo que encierro mi materialapp
   /// con mi changenotifierprovider.
   runApp(
-    ChangeNotifierProvider<ThemeProvider>(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+      ],
       child: const StarWarsApp(),
     ),
   );

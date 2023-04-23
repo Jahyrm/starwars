@@ -15,6 +15,7 @@
 ///
 import 'package:flutter/widgets.dart';
 
+// Clase con íconos personalizados creados por mi.
 class StarWarsIcons {
   StarWarsIcons._();
 

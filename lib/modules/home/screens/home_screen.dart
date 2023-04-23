@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:starwars/core/providers/favorites_provider.dart';
 import 'package:starwars/core/providers/theme_provider.dart';
 import 'package:starwars/core/screens/connection_info.dart';
 import 'package:starwars/core/screens/screen_base.dart';
 import 'package:starwars/core/utils/star_wars_icons.dart';
+import 'package:starwars/modules/favorites/screens/favorites_screen.dart';
 import 'package:starwars/modules/home/controllers/home_controller.dart';
 import 'package:starwars/modules/home/models/character.dart';
 import 'package:starwars/modules/home/widgets/character_card.dart';
@@ -19,9 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Esta será la lógica de esta pantalla
   final HomeController _con = HomeController();
 
-  /// Esta variable nos dirá en que modo está la app;
-  late bool _isLightMode;
-
   /// Future que traerá los datos desde el api.
   late Future<List<Character>?> _future;
 
@@ -34,16 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     /// Seteamos el modo de la app;
-    _isLightMode = context.watch<ThemeProvider>().themeType == ThemeType.light;
+    _con.isLightMode =
+        context.watch<ThemeProvider>().themeType == ThemeType.light;
 
+    /// Construimos la UI dependiendo del estado de la llamada al API.
     return FutureBuilder(
       future: _future,
       builder: (BuildContext context, AsyncSnapshot<List<Character>?> sp) {
-        /// Para probar posibles respuestas.
-        // sp = const AsyncSnapshot<List<Character>?>.withData(ConnectionState.done, null);
-        // sp = const AsyncSnapshot<List<Character>?>.withData(ConnectionState.done, []);
-        // sp = const AsyncSnapshot<List<Character>?>.withData(ConnectionState.waiting, null);
-        // sp = AsyncSnapshot<List<Character>?>.withError(ConnectionState.done, 'some error', StackTrace.current);
         if (sp.connectionState != ConnectionState.waiting) {
           if (sp.hasData) {
             if (sp.data!.isNotEmpty) {
@@ -64,7 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// Mostramos la lista de personajes
   Widget _body(List<Character> charactersList) {
+    // Filtramos, en caso de que haya seleccionado un filtro.
     List<Character> finalList;
     if (_con.filtro == null) {
       finalList = charactersList;
@@ -73,8 +74,56 @@ class _HomeScreenState extends State<HomeScreen> {
           .where((Character element) => element.gender == _con.filtro)
           .toList();
     }
+
     return ScreenBase(
+      leftButton: IconButton(
+        onPressed: () {
+          SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        },
+        icon: const Icon(Icons.exit_to_app),
+      ),
       title: 'STAR WARS APP',
+      actionButtons: [
+        IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const FavoritesScreen()),
+            );
+          },
+          icon: Stack(
+            children: [
+              const Icon(Icons.favorite_sharp),
+              Positioned(
+                right: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(1),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  constraints: const BoxConstraints(
+                    minWidth: 12,
+                    minHeight: 12,
+                  ),
+                  child: Consumer<FavoritesProvider>(
+                    builder: (context, favs, child) {
+                      return Text(
+                        '${favs.myFavoritesCount}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 8,
+                        ),
+                        textAlign: TextAlign.center,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
       wrapInScroll: false,
       child: Column(
         children: [
@@ -112,6 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// Botón que cambia el tema de la app
   FloatingActionButton _floatingButton() {
     return FloatingActionButton(
       onPressed: () {
@@ -119,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
         context.read<ThemeProvider>().changeCurrentTheme();
       },
       tooltip: 'Cambiar tema',
-      child: _isLightMode
+      child: _con.isLightMode
           ? const Icon(
               StarWarsIcons.darthVader,
               color: Colors.black,
@@ -132,13 +182,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// Método que muestra el popup del cambio.
   void _showPopUp() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            _isLightMode
+            _con.isLightMode
                 ? 'Te has cambiado al lado oscuro!'
                 : 'Has vuelto al lado luminoso!',
             textAlign: TextAlign.center,
@@ -147,8 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
           content: Text(
             'Qué la fuerza te acompañe!',
             textAlign: TextAlign.center,
-            style:
-                TextStyle(fontFamily: _isLightMode ? 'StarJhol' : 'StarJout'),
+            style: TextStyle(
+                fontFamily: _con.isLightMode ? 'StarJhol' : 'StarJout'),
           ),
         );
       },

@@ -4,6 +4,7 @@ import 'package:starwars/core/settings/global_vars.dart';
 import 'package:starwars/modules/home/models/film.dart';
 import 'package:starwars/modules/home/models/films_response.dart';
 
+/// Este será el repositorio de las películas de StarWars
 class FilmsService {
   static List<Film> listOfFilms = [];
 
@@ -12,7 +13,6 @@ class FilmsService {
     try {
       Map<String, dynamic>? apiJsonResponse = await Api.call(
         url ?? '${GlobalVars.apiUrl}/films/',
-        printDebugInfo: true,
       );
 
       if (apiJsonResponse != null) {

@@ -5,6 +5,7 @@ import 'package:starwars/modules/home/models/character.dart';
 import 'package:starwars/modules/home/models/characters_response.dart';
 import 'package:starwars/modules/home/models/film.dart';
 
+/// Este será el repositorio de los personajes de StarWars
 class CharactersService {
   static List<Character> listOfCharacters = [];
 
@@ -17,7 +18,6 @@ class CharactersService {
       // Hacemos la llamada a la api para cargar las películas
       Map<String, dynamic>? apiJsonResponse = await Api.call(
         url ?? '${GlobalVars.apiUrl}/people/',
-        printDebugInfo: true,
       );
 
       if (apiJsonResponse != null) {

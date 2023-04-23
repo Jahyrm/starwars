@@ -4,7 +4,11 @@ import 'package:starwars/modules/home/models/film.dart';
 import 'package:starwars/core/services/characters_service.dart';
 import 'package:starwars/core/services/films_service.dart';
 
+/// Lógica de la pantalla inicial
 class HomeController {
+  /// Esta variable nos dirá en que modo está la app;
+  late bool isLightMode;
+
   /// Lista que contendrás las películas provenientes de la api.
   List<Film>? filmsList;
   List<Character>? charactersList;

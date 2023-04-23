@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:starwars/core/providers/favorites_provider.dart';
 import 'package:starwars/core/providers/theme_provider.dart';
 import 'package:starwars/modules/home/models/character.dart';
 import 'package:starwars/modules/home/widgets/film_widget.dart';
 
+/// Widget para la visualización de un personaje.
 class CharacterCard extends StatefulWidget {
+  /// Este widget necesita un [Character] que contenga una lista de [films]
   final Character character;
 
   const CharacterCard({Key? key, required this.character}) : super(key: key);
@@ -107,9 +110,30 @@ class _CharacterCardState extends State<CharacterCard> {
                     ],
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   flex: 0,
-                  child: Icon(Icons.favorite, color: Colors.red),
+                  child: Consumer<FavoritesProvider>(
+                    builder: (context, favs, child) {
+                      return InkWell(
+                        onTap: () {
+                          if (favs.items
+                              .where((e) => e.id == widget.character.id!)
+                              .isNotEmpty) {
+                            favs.remove(widget.character);
+                          } else {
+                            favs.add(widget.character);
+                          }
+                        },
+                        child: Icon(
+                            favs.items
+                                    .where((e) => e.id == widget.character.id!)
+                                    .isNotEmpty
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: Colors.red),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

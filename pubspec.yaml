@@ -1,5 +1,5 @@
 name: starwars
-description: A new Flutter project.
+description: StarWars App Portfolio Project.
 
 publish_to: 'none'
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
     
-  flutter_cube: ^0.1.1
+  flutter_cube: ^0.1.1 # Para mostrar objetos en 3D
   http: ^0.13.5 # Librería necesaria para tener acceso a internet.
   provider: ^6.0.5 # Utilizado para el manejo de estados de la app.
   shared_preferences: ^2.0.17 # Utilizado para manejar las preferencias del usuario.
